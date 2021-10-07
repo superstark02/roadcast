@@ -1,4 +1,4 @@
-const axios = require('axios'); //axios used
+const axios = require('axios'); //axios library used
 
 async function getCalls(){
     let i = 0;
