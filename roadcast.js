@@ -1,10 +1,37 @@
-const axios = require('axios'); //axios library used
+const http = require('http');
 
-async function getCalls(){
+function makeCall() {
+    return new Promise(resolve => {
+        http.get("http://recruitment.roadcast.net/node_js_api", async (response) => {
+            let data = ' ';
+            response.on('data', (bit) => {
+                data += bit;
+            })
+
+            response.on('end', () => {
+                //console.log(result)
+                resolve(data);
+            })
+        }).on('error', (error) => {
+            resolve(error)
+        })
+    });
+}
+
+async function getCalls() {
     let i = 0;
-    for(i = 0; i < 10; i++){
-        let data = await axios.get("https://dog.ceo/api/breeds/image/random") // waiting for response
-        console.log(data.data) //logging data
+    for (i = 0; i < 10; i++) {
+
+        console.log("making request");
+        await makeCall().then(data=>{
+            console.log(data)
+        });
+        console.log("request completed");
+
+        /* for space between logs to differentaite each request */
+        console.log("");
+        console.log("");
+        console.log("");
     }
 }
 
