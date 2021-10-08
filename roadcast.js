@@ -1,6 +1,7 @@
 const http = require('http');
 
 function makeCall() {
+    //promise, it is completed only when data is returned
     return new Promise(resolve => {
         http.get("http://recruitment.roadcast.net/node_js_api", async (response) => {
             let data = ' ';
@@ -18,6 +19,8 @@ function makeCall() {
     });
 }
 
+
+//driver function
 async function getCalls() {
     let i = 0;
     for (i = 0; i < 10; i++) {
@@ -29,9 +32,7 @@ async function getCalls() {
         console.log("request completed");
 
         /* for space between logs to differentaite each request */
-        console.log("");
-        console.log("");
-        console.log("");
+        console.log(""); console.log(""); console.log("");
     }
 }
 
